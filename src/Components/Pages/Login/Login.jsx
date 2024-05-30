@@ -1,10 +1,29 @@
+import { useContext } from 'react';
 import login from '../../../assets/images/login/login.svg';
 import { FaFacebook } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { RiLinkedinBoxFill } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Providers/AuthProvider';
 
 const Login = () => {
+  const { signIn } = useContext(AuthContext);
+
+  const handleLogin = event => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    // sign in with email and password
+    signIn(email, password)
+      .then(res => {
+        console.log(res.user);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row">
@@ -13,7 +32,7 @@ const Login = () => {
         </div>
         <div className="card shrink-0 w-full max-w-sm border p-5 shadow-2xl bg-base-100">
           <h1 className="text-3xl mt-5 font-bold text-center">Login!</h1>
-          <form className="card-body">
+          <form onSubmit={handleLogin} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -21,6 +40,7 @@ const Login = () => {
               <input
                 type="email"
                 placeholder="email"
+                name="email"
                 className="input input-bordered"
                 required
               />
@@ -32,6 +52,7 @@ const Login = () => {
               <input
                 type="password"
                 placeholder="password"
+                name="password"
                 className="input input-bordered"
                 required
               />
