@@ -1,8 +1,10 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
+  signOut,
 } from 'firebase/auth';
 import auth from '../Firebase/firebase.init';
 export const AuthContext = createContext(null);
@@ -22,11 +24,31 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
+  // logout methode
+
+  const logOut = () => {
+    return signOut(auth);
+  };
+
+  // user exist or not check
+
+  useEffect(() => {
+    const unsubsCribe = () =>
+      onAuthStateChanged(auth, newUser => {
+        setUser(newUser);
+        console.log('On Auth State new user', newUser);
+      });
+    return () => {
+      unsubsCribe();
+    };
+  }, []);
+
   const data = {
     user,
     loading,
     createUser,
     signIn,
+    logOut,
   };
 
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;

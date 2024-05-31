@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Car Engine Plug",
+    "id": "1",
+    "price": 19.99,
+    "img": "../src/assets/images/products/1.png"
+  },
+  {
+    "name": "Car Air Filter",
+    "id": "2",
+    "price": 29.99,
+    "img": "../src/assets/images/products/2.png"
+  },
+  {
+    "name": "Cools Led Light",
+    "id": "3",
+    "price": 39.99,
+    "img": "../src/assets/images/products/3.png"
+  },
+  {
+    "name": "Cools Led Spring",
+    "id": "4",
+    "price": 49.99,
+    "img": "../src/assets/images/products/4.png"
+  },
+  {
+    "name": "Cools Led Tire",
+    "id": "5",
+    "price": 59.99,
+    "img": "../src/assets/images/products/5.png"
+  },
+  {
+    "name": "Cools Led Battery",
+    "id": "6",
+    "price": 69.99,
+    "img": "../src/assets/images/products/6.png"
+  }
+]

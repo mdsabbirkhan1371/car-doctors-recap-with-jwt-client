@@ -3,11 +3,13 @@ import login from '../../../assets/images/login/login.svg';
 import { FaFacebook } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { RiLinkedinBoxFill } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const handleLogin = event => {
     event.preventDefault();
@@ -18,7 +20,10 @@ const Login = () => {
     // sign in with email and password
     signIn(email, password)
       .then(res => {
-        console.log(res.user);
+        const user = res.user;
+        if (user) {
+          navigate('/');
+        }
       })
       .catch(error => {
         console.error(error);

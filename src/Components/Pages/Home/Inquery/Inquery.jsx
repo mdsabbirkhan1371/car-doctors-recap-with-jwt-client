@@ -4,19 +4,18 @@ import { MdAddLocationAlt } from 'react-icons/md';
 
 const Inquery = () => {
   return (
-    <div className="max-w-6xl mx-auto  h-60 py-14  bg-black rounded-lg my-16">
-      <div className="flex justify-around ">
-        <div className="p-5">
-          <div className="flex items-center">
-            <div className="text-5xl mr-3 text-red-500">
-              <TbCalendarTime />
-            </div>
-            <div>
-              <p>We are open monday-friday</p>
-              <h1 className="text-2xl font-bold">7:00 am - 9:00 pm</h1>
-            </div>
+    <div className="max-w-6xl mx-auto p-12   bg-black rounded-lg my-16">
+      <div className="md:flex space-y-2 justify-around ">
+        <div className="flex items-center">
+          <div className="text-5xl mr-3 text-red-500">
+            <TbCalendarTime />
+          </div>
+          <div>
+            <p>We are open monday-friday</p>
+            <h1 className="text-2xl font-bold">7:00 am - 9:00 pm</h1>
           </div>
         </div>
+
         <div className="flex items-center">
           <div className="text-5xl mr-3 text-red-500">
             <BsTelephoneX />
