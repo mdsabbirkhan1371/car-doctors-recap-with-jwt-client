@@ -38,6 +38,7 @@ const AuthProvider = ({ children }) => {
     const unsubsCribe = () =>
       onAuthStateChanged(auth, newUser => {
         setUser(newUser);
+        setLoading(false);
         console.log('On Auth State new user', newUser);
       });
     return () => {

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
 
 const Bookings = () => {
@@ -16,7 +16,9 @@ const Bookings = () => {
   }, []);
   return (
     <div>
-      <h1 className="text-center text-2xl">My Bookings:{myBookings.length}</h1>
+      <h1 className="text-center text-2xl">
+        My Bookings : {myBookings.length}
+      </h1>
     </div>
   );
 };
