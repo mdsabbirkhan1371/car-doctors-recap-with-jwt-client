@@ -21,12 +21,14 @@ const AuthProvider = ({ children }) => {
   // sign in with email and password
 
   const signIn = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   // logout methode
 
   const logOut = () => {
+    setLoading(true);
     return signOut(auth);
   };
 

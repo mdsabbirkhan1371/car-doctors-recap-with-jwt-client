@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import logo from '../../../../assets/logo.svg';
 import { useContext } from 'react';
 import { AuthContext } from '../../../Providers/AuthProvider';
@@ -7,25 +7,33 @@ const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
 
   const handleSignOut = () => {
-    logOut();
+    logOut().then(
+      {}.catch(err => {
+        console.error(err);
+      })
+    );
   };
 
   const navLinks = (
     <>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <Link to="/">Home</Link>
       </li>
       <li>
-        <NavLink to="/about">About</NavLink>
+        <Link to="/about">About</Link>
       </li>
       <li>
-        <NavLink to="/services">Services</NavLink>
+        <Link to="/services">Services</Link>
       </li>
       <li>
-        <NavLink to="/blog">Blog</NavLink>
+        <Link to="/blog">Blog</Link>
       </li>
       <li>
-        <NavLink to="/contact">Contact</NavLink>
+        <Link to="/myBookings">Bookings</Link>
+      </li>
+
+      <li>
+        <Link to="/contact">Contact</Link>
       </li>
     </>
   );

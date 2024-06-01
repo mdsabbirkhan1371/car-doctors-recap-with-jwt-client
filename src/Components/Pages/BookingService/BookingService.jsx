@@ -82,7 +82,7 @@ const BookingService = () => {
               <input
                 type="email"
                 name="email"
-                defaultValue={user.email}
+                defaultValue={user?.email}
                 className="input input-bordered"
                 required
               />
