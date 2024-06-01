@@ -53,12 +53,15 @@ const Bookings = () => {
         if (data.modifiedCount > 0) {
           const remaining = myBookings.filter(booking => booking._id !== id);
           const updated = myBookings.find(booking => booking._id === id);
+
           updated.status = 'confirm';
-          const newBookings = [updated, ...remaining];
-          setMyBookings(newBookings);
+
+          const newBooking = [updated, ...remaining];
+          setMyBookings(newBooking);
         }
       });
   };
+
   return (
     <div>
       <h1 className="text-center text-2xl">
