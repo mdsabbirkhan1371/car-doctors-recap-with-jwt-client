@@ -39,7 +39,7 @@ const AuthProvider = ({ children }) => {
         console.log('On Auth State new user', newUser);
       });
     return () => {
-      unsubsCribe();
+      return unsubsCribe();
     };
   }, []);
 
