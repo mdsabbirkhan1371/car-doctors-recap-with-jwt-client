@@ -3,12 +3,13 @@ import login from '../../../assets/images/login/login.svg';
 import { FaFacebook } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { RiLinkedinBoxFill } from 'react-icons/ri';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
+import axios from 'axios';
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
-
+  const location = useLocation();
   const navigate = useNavigate();
 
   const handleLogin = event => {
@@ -20,10 +21,21 @@ const Login = () => {
     // sign in with email and password
     signIn(email, password)
       .then(res => {
-        const user = res.user;
-        if (user) {
-          navigate('/');
-        }
+        const loggedUser = res.user;
+        console.log(loggedUser);
+
+        const user = { email };
+        //  jwt implement
+        axios
+          .post('http://localhost:5000/jwt', user, {
+            withCredentials: true,
+          })
+          .then(res => {
+            console.log(res.data);
+            if (res.data.success) {
+              navigate(location?.state ? location?.state : '/');
+            }
+          });
       })
       .catch(error => {
         console.error(error);

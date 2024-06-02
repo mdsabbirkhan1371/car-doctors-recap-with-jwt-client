@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
 import BookingsRow from './BookingsRow';
 import { ToastContainer, toast } from 'react-toastify';
+import axios from 'axios';
 
 const Bookings = () => {
   const { user } = useContext(AuthContext);
@@ -13,7 +14,6 @@ const Bookings = () => {
     fetch(url)
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         setMyBookings(data);
       });
   }, [url]);
