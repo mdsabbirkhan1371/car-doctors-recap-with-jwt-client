@@ -7,6 +7,7 @@ import {
   signOut,
 } from 'firebase/auth';
 import auth from '../Firebase/firebase.init';
+import axios from 'axios';
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -36,10 +37,32 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubsCribe = () =>
-      onAuthStateChanged(auth, newUser => {
-        setUser(newUser);
+      onAuthStateChanged(auth, currentUser => {
+        setUser(currentUser);
         setLoading(false);
-        console.log('On Auth State new user', newUser);
+        console.log('On Auth State new user', currentUser);
+
+        // for jwt implement from here
+        const userEmail = currentUser?.email || user?.email;
+        const loggedUser = { email: userEmail };
+
+        if (currentUser) {
+          axios
+            .post('http://localhost:5000/jwt', loggedUser, {
+              withCredentials: true,
+            })
+            .then(res => {
+              console.log(res.data);
+            });
+        } else {
+          axios
+            .post('http://localhost:5000/logout', loggedUser, {
+              withCredentials: true,
+            })
+            .then(res => {
+              console.log(res.data);
+            });
+        }
       });
     return () => {
       return unsubsCribe();

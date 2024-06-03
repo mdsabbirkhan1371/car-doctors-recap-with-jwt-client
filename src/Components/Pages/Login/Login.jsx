@@ -5,7 +5,6 @@ import { FcGoogle } from 'react-icons/fc';
 import { RiLinkedinBoxFill } from 'react-icons/ri';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
-import axios from 'axios';
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
@@ -21,17 +20,10 @@ const Login = () => {
     // sign in with email and password
     signIn(email, password)
       .then(res => {
-        const loggedUser = res.user;
-        console.log(loggedUser);
-
-        const user = { email };
-
-        //  jwt implement
-        // get access token
-
-        axios.post('http://localhost:5000/jwt', user).then(res => {
-          console.log(res.data);
-        });
+        console.log(res.user);
+        if (res.user) {
+          navigate(location?.state ? location?.state : '/');
+        }
       })
 
       .catch(error => {

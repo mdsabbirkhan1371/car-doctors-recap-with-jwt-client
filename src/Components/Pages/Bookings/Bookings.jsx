@@ -11,15 +11,15 @@ const Bookings = () => {
 
   const url = `http://localhost:5000/bookings?email=${user.email}`;
   useEffect(() => {
-    axios.get(url).then(res => {
-      console.log(res.data);
-      setMyBookings(res.data);
-    });
-    // fetch(url)
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     setMyBookings(data);
-    //   });
+    // axios.get(url, { withCredentials: true }).then(res => {
+    //   console.log(res.data);
+    //   setMyBookings(res.data);
+    // });
+    fetch(url, { credentials: 'include' })
+      .then(res => res.json())
+      .then(data => {
+        setMyBookings(data);
+      });
   }, [url]);
 
   // delete booking
