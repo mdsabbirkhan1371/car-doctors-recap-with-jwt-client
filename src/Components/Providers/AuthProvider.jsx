@@ -21,12 +21,15 @@ const AuthProvider = ({ children }) => {
 
   // sign in with email and password
 
-  const signIn = (email, password) => {
+  const signIn = async (email, password) => {
     setLoading(true);
-    return signInWithEmailAndPassword(auth, email, password);
+    console.log({ email, password });
+    const res = await signInWithEmailAndPassword(auth, email, password);
+    setUser(res.user);
+    return res;
   };
 
-  // logout methode
+  // logout method
 
   const logOut = () => {
     setLoading(true);
@@ -47,6 +50,7 @@ const AuthProvider = ({ children }) => {
         const loggedUser = { email: userEmail };
 
         if (currentUser) {
+          setUser(currentUser);
           axios
             .post(
               'https://car-doctors-server-site.vercel.app/jwt',
@@ -60,7 +64,6 @@ const AuthProvider = ({ children }) => {
             });
         } else {
           axios
-
             .post(
               'https://car-doctors-server-site.vercel.app/logout',
               loggedUser,
@@ -73,10 +76,8 @@ const AuthProvider = ({ children }) => {
             });
         }
       });
-    return () => {
-      return unsubsCribe();
-    };
-  }, []);
+    unsubsCribe();
+  }, [user]);
 
   const data = {
     user,

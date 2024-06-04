@@ -11,24 +11,31 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const handleLogin = event => {
+  const handleLogin = async event => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
 
     // sign in with email and password
-    signIn(email, password)
-      .then(res => {
-        console.log(res.user);
-        if (res.user) {
-          navigate(location?.state ? location?.state : '/');
-        }
-      })
-
-      .catch(error => {
-        console.error(error);
-      });
+    try {
+      const res = await signIn(email, password);
+      console.log(res, 'User is here...');
+      if (res.user) {
+        navigate(location?.state ? location?.state : '/');
+      }
+    } catch (err) {
+      console.error(err);
+    }
+    // .then(res => {
+    //   console.log(res.user);
+    //   if (res.user) {
+    //     navigate(location?.state ? location?.state : '/');
+    //   }
+    // })
+    // .catch(error => {
+    //   console.error(error);
+    // });
   };
   return (
     <div className="hero min-h-screen bg-base-200">

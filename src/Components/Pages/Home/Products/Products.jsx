@@ -8,6 +8,7 @@ const Products = () => {
       .then(res => res.json())
       .then(data => setProducts(data));
   }, []);
+
   return (
     <div className="my-12">
       <div className="text-center space-y-5">
