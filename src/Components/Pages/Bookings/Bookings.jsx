@@ -30,12 +30,9 @@ const Bookings = () => {
   const handleDelete = id => {
     const proceed = confirm('Are You Sure Want to Delete This?');
     if (proceed) {
-      fetch(
-        `https://car-doctors-server-site-13mxhwo1c-md-sabbir-khans-projects.vercel.app/bookings/${id}`,
-        {
-          method: 'DELETE',
-        }
-      )
+      fetch(`https://car-doctors-server-site.vercel.app/bookings/${id}`, {
+        method: 'DELETE',
+      })
         .then(res => res.json())
         .then(data => {
           console.log(data);
@@ -51,16 +48,13 @@ const Bookings = () => {
   // update booking
 
   const handleBookingConfirm = id => {
-    fetch(
-      `https://car-doctors-server-site-13mxhwo1c-md-sabbir-khans-projects.vercel.app/bookings/${id}`,
-      {
-        method: 'PATCH',
-        headers: {
-          'content-type': 'application/json',
-        },
-        body: JSON.stringify({ status: 'confirm' }),
-      }
-    )
+    fetch(`https://car-doctors-server-site.vercel.app/bookings/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({ status: 'confirm' }),
+    })
       .then(res => res.json())
       .then(data => {
         console.log(data);

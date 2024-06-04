@@ -49,7 +49,7 @@ const AuthProvider = ({ children }) => {
         if (currentUser) {
           axios
             .post(
-              'https://car-doctors-server-site-13mxhwo1c-md-sabbir-khans-projects.vercel.app/jwt',
+              'https://car-doctors-server-site.vercel.app/jwt',
               loggedUser,
               {
                 withCredentials: true,
@@ -60,8 +60,9 @@ const AuthProvider = ({ children }) => {
             });
         } else {
           axios
+
             .post(
-              'https://car-doctors-server-site-13mxhwo1c-md-sabbir-khans-projects.vercel.app/logout',
+              'https://car-doctors-server-site.vercel.app/logout',
               loggedUser,
               {
                 withCredentials: true,
